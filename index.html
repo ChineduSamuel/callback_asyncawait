@@ -58,18 +58,18 @@ function showMessage() {
     
     
     // Fetching Video Apis using promise
-    loadVideo("https://youtu.be/pvPsJFRGleA").then(play()
+    loadVideo("https://www.youtube.com/watch?v=xQOO2xGQ1Pc").then(play()
     ).catch(function(err) {
-       alert(err.message())
+       alert(err)
     })
-function loadVideo(scr) {
+ async function loadVideo(src) {
   
-return new Promise(function(resolve,reject){
+ await new Promise(function(resolve,reject){
   let video = document.createElement('video')
   video.setAttribute('controls', 'controls')
   video.setAttribute('id', 'video')
   let source = document.createElement('source')
-  source.src=src
+  source.src= src
   source.type = "video/mp4"
   video.appendChild(source)
   video.onload = function () {
@@ -84,13 +84,13 @@ document.body.append(video)
 
 }
     
-  function play(){
-    return new Promise(function (resolve,reject){
+ async  function play(){
+    await new Promise(function (resolve,reject){
      var video = document.getElementById('video'); 
      resolve(video.play());
     })
   }  
-    
+  play()
     </script>
 </body>
 </html>
