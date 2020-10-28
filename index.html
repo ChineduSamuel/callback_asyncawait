@@ -58,24 +58,60 @@
     
     
     // Fetching Video Apis using promise
-    loadVideo("https://www.youtube.com/watch?v=xQOO2xGQ1Pc").then(play()
+    loadVideo("https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4")
+ 
+ async function createVideo(src)
+  {
+
+
+let video = document.createElement('video')
+video.setAttribute('controls', 'controls')
+video.setAttribute('id', 'video')
+let source = document.createElement('source')
+source.src = src
+source.type = "video/mp4"
+video.appendChild(source)
+video.onload = function () {
+     resolve(video)
+}
+ video.onerror = function () {
+     reject(new Error('video cannot be loaded at this time'))
+ }
+ document.body.append(video)
+
+
+
+}
+ 
+async  function loadVideo(src){
+ await createVideo(src);   
+  var video = document.getElementById('video'); 
+  video.play();
+}
+
+
+
+loadVideo("https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4").then(
+      play()
     ).catch(function(err) {
        alert(err)
     })
- async function loadVideo(src) {
+ 
+    async function loadVideo(src)
+     {
   
- await new Promise(function(resolve,reject){
-  let video = document.createElement('video')
-  video.setAttribute('controls', 'controls')
-  video.setAttribute('id', 'video')
-  let source = document.createElement('source')
-  source.src= src
-  source.type = "video/mp4"
-  video.appendChild(source)
-  video.onload = function () {
+   await new Promise(function(resolve,reject){
+   let video = document.createElement('video')
+   video.setAttribute('controls', 'controls')
+   video.setAttribute('id', 'video')
+   let source = document.createElement('source')
+   source.src = src
+   source.type = "video/mp4"
+   video.appendChild(source)
+   video.onload = function () {
     resolve(video)
   }
-video.onerror = function () {
+  video.onerror = function () {
   reject(new Error('video cannot be loaded at this time'))
 }
 document.body.append(video)
@@ -89,6 +125,8 @@ document.body.append(video)
      var video = document.getElementById('video'); 
      resolve(video.play());
     })
+
+    
   }  
   play()
     </script>
