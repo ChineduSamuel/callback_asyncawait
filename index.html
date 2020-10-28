@@ -25,13 +25,13 @@
 <body>
     <button onclick="showMessage()">Show Message</button>
     <script>
-function showMessage() {
-    drawCircle(150, 150, 100).then(div => {
+ async function showMessage() {
+   await drawCircle(150, 150, 100).then(div => {
       div.classList.add('message');
       div.append("Tiide Lab...");
     });
   }
-  function drawCircle(cx, cy, radius) {
+  async function drawCircle(cx, cy, radius) {
     let div = document.createElement('div');
     div.style.width = 0;
     div.style.height = 0;
@@ -39,7 +39,7 @@ function showMessage() {
     div.style.top = cy + 'px';
     div.className = 'circle';
     document.body.append(div);
-    return new Promise(resolve => {
+   await new Promise(resolve => {
       setTimeout(() => {
         div.style.width = radius * 3 + 'px';
         div.style.height = radius * 3 + 'px';
